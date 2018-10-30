@@ -1,0 +1,19 @@
+$fresh:rgb(247, 245, 230);
+$vermillion:rgb(51, 58, 85);
+$sunshine:rgb(82, 101, 143);
+$clean:rgb(232, 232, 232);
+
+
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+html{
+  font-size: 62.5%;
+}
+
+body{
+  background-color: $vermillion;
+}

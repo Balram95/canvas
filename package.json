@@ -1,0 +1,14 @@
+{
+  "name": "index",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "compile-sass": "node-sass sass/master.scss css/style.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^4.9.4"
+  }
+}
