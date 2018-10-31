@@ -25,12 +25,21 @@ function Point(x,y,r,dx,dy){
     ctx.stroke();
   }
   this.update=function(){
-    for (var i = 0; i < 50; i++) {
-      if((Math.abs(points[i].x-this.x<100))&&(Math.abs(points[i].y-this.y<100))){
+    for (var i = 0; i < numm; i++) {
+
+      var myX=Math.abs(points[i].x-this.x);
+      var myY=Math.abs(points[i].y-this.y);
+
+      if(myX<70&&myY<70){
         ctx.moveTo(this.x, this.y);
         ctx.lineTo(points[i].x, points[i].y);
         ctx.strokeStyle = "white";
-        ctx.globalAlpha=(100/(Math.abs(points[i].x-this.x))+(100/Math.abs(points[i].y-this.y)))/7;
+        if(myX<myY){
+          ctx.globalAlpha=myX/70
+        }
+        else{
+          ctx.globalAlpha=myY/70
+        }
         ctx.stroke();
       }
     }
@@ -46,12 +55,19 @@ function Point(x,y,r,dx,dy){
 
     this.x+=this.dx;
     this.y+=this.dy;
+
+    if(Math.abs(this.x-xPosition)<50){
+      this.x-=this.dx;
+      this.y-=this.dy;
+    }
     this.draw();
   }
 
 }
 
-for (var i = 0; i < 50; i++) {
+var numm=150;
+
+for (var i = 0; i < numm; i++) {
   points[i]=new Point(Math.random()*w,Math.random()*h,1,Math.random()*1-.5,Math.random()*1-.5)
 }
 
@@ -64,7 +80,7 @@ window.addEventListener('mousemove',(e) => {
 function animate(){
   requestAnimationFrame(animate)
   ctx.clearRect(0,0,w,h)
-  for (var i = 0; i < 50; i++) {
+  for (var i = 0; i < numm; i++) {
     points[i].update();
   }
 }
