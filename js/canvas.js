@@ -20,7 +20,7 @@ function Point(x,y,r,dx,dy){
   this.draw=function(){
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "rgba(0,0,0,0.4)";
     ctx.fill();
     ctx.stroke();
   }
@@ -30,10 +30,10 @@ function Point(x,y,r,dx,dy){
       var myX=Math.abs(points[i].x-this.x);
       var myY=Math.abs(points[i].y-this.y);
 
-      if(myX<70&&myY<70){
+      if(myX<100&&myY<100){
         ctx.moveTo(this.x, this.y);
         ctx.lineTo(points[i].x, points[i].y);
-        ctx.strokeStyle = "white";
+        ctx.strokeStyle = "rgba(0,0,0,0.4)";
         if(myX<myY){
           ctx.globalAlpha=myX/70
         }
@@ -44,8 +44,16 @@ function Point(x,y,r,dx,dy){
       }
     }
 
-    // this.x=this.x-xPosition
-    // this.y=this.y-xPosition
+    if(Math.abs(this.x-xPosition)<150&&Math.abs(this.y-yPosition)<150){
+
+      // this.dx=-this.dx;
+      if (this.dx>0) {
+        this.x=this.x+100;
+      }else {
+          this.x=this.x-100;
+      }
+    }
+
     if(this.x>w||this.y<0){
       this.dx=-this.dx
     }
@@ -55,20 +63,15 @@ function Point(x,y,r,dx,dy){
 
     this.x+=this.dx;
     this.y+=this.dy;
-
-    if(Math.abs(this.x-xPosition)<50){
-      this.x-=this.dx;
-      this.y-=this.dy;
-    }
     this.draw();
   }
 
 }
 
-var numm=150;
+var numm=100;
 
 for (var i = 0; i < numm; i++) {
-  points[i]=new Point(Math.random()*w,Math.random()*h,1,Math.random()*1-.5,Math.random()*1-.5)
+  points[i]=new Point(Math.random()*w,Math.random()*h,3,Math.random()*2-1,Math.random()*2-1)
 }
 
 
