@@ -1,6 +1,13 @@
-1. Check cookie , if cookie for exist for uid fetch thread for the uid or else set cookie for the uid.</br>
+    uid = getCookie("uid");
+     //Check cookie 
+        function checkCookie() {
+          uid = getCookie("uid");
+          // if exist fetch Thread or else set a new cookie with uid
+       }
+   
 2.In fetch thread get agent pk and chat thread pk from api and fetch messages from support chat api and </br>
 push data into chat messages.
+
 3.after content loading -
 
     connection.onopen() ->
@@ -10,14 +17,20 @@ service.support.createDetailCookie ->
 
     session.register(wamp_prefix+'service.support.createDetailCookie.'+uid, createCookieDetail).then()
   
-      in create cookieDetail callback->
+      function createCookieDetail(args) {
+        detail = getCookie("uidDetails");
+       //if exists set document.cookie to this cookie
+       //or else set new cookie as "uidDetails"
+        }
   
   
 service.support.heartbeat ->
 
     session.register(wamp_prefix+'service.support.heartbeat.'+uid, heartbeat).then()
-    
-      in heartbeat callback-> wil be used to check if visitor is active .(returns uid)
+    // for checking if visitor is online
+     function heartbeat() {
+      return uid
+    }
 
 service.support.chat ->
 
@@ -67,4 +80,28 @@ service.support.chat ->
       
       //create a div element and set the innerHTML to message along with pushing it into chat.message
 
-  
+open the connection-
+
+        connection.open();
+        
+set the UI for chatBox- 
+
+    function createChatDiv() {
+        //create body element
+        //create main div
+       body.appendChild(mainDiv);
+    }
+function we will be using- 
+    
+    function deactivateAudioFrame(){
+     //send request to webserver for hiding the audio frame if audio has ended.
+    }
+    function togglingActive(element,value){
+        //shows active frame - audio/vidoe
+    }
+    function setAudioVideoBtn(){
+     // set audio/video button according to the permission
+    }
+
+           
+        
